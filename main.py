@@ -48,6 +48,18 @@ class Tenant(BaseModel):
             data = json.load(file)
         assert isinstance(data, dict), "Expected a dictionary of tenants"
         return {key: Tenant(**tenant) for key, tenant in data.items()}
+
+class TenantSettlement(BaseModel):
+    tenant_name: str
+    month: int
+    year: int
+    rent_share: float
+    bills_share: float
+    total_transfers: float
+
+    @property
+    def balance(self) -> float:
+        return self.total_transfers - (self.rent_share + self.bills_share)
     
 
 class Transfer(BaseModel):
