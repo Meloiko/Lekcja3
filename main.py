@@ -112,6 +112,14 @@ class Manager:
         self.transfers = Transfer.from_json_file(self.parameters.transfers_json_path)
         self.bills = Bill.from_json_file(self.parameters.bills_json_path)
 
+class ApartmentSettlement(BaseModel):
+    apart_key: str 
+    month: int
+    year: int
+    uttility_bills_sum: float
+    rent_sum: float
+    amount_due: float
+
 
 if __name__ == '__main__':
     parameters = Parameters()
