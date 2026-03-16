@@ -112,6 +112,7 @@ class Manager:
         self.transfers = Transfer.from_json_file(self.parameters.transfers_json_path)
         self.bills = Bill.from_json_file(self.parameters.bills_json_path)
 
+
 class ApartmentSettlement(BaseModel):
     apart_key: str 
     month: int
@@ -139,3 +140,8 @@ if __name__ == '__main__':
         for transfer in manager.transfers:
             if transfer.tenant == tenant.name:
                 print('  ', transfer.amount_pln, transfer.date, transfer.settlement_year, transfer.settlement_month)
+    
+    print("PODSUMOWANIE ROZLICZEŃ")
+    for apartment_key, apartment in manager.apartments.items():
+        print(f"Mieszkanie: {apartment.name} (Lokalizacja: {apartment.location})")
+        print(f"Powierzchnia: {apartment_area_m2} m2")
